@@ -1,8 +1,8 @@
 'use client'
 
-import Chat from "../components/chat";
-import Details from "../components/details";
-import Users from "../components/users";
+import Chat from "../../components/chat";
+import Details from "../../components/details";
+import Users from "../../components/list/list";
 
 export default function Home() {
   return (

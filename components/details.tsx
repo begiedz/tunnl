@@ -1,6 +1,6 @@
 const Details = () => {
   return (
-    <aside className="bg-blue-500 grow">
+    <aside className="bg-blue-500 flex-[1]">
       Details
     </aside>
   );

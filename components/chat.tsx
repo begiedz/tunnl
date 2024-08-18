@@ -1,8 +1,9 @@
 const Chat = () => {
   return (
-    <main className="bg-red-500 grow">
+    <main className="bg-red-500 flex-[2]">
       Chat
-    </main>);
+    </main>
+  );
 }
 
 export default Chat;
