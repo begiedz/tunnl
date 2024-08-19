@@ -1,5 +1,5 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Ellipsis, UserRoundPen, Video } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Ellipsis, UserRoundPen, Video } from 'lucide-react';
 
 const UserInfo = () => {
   return (
@@ -13,12 +13,18 @@ const UserInfo = () => {
       </div>
 
       <ul className="flex gap-1">
-        <li><Ellipsis size={16} /></li>
-        <li><Video size={16} /></li>
-        <li><UserRoundPen size={16} /></li>
+        <li>
+          <Ellipsis size={16} />
+        </li>
+        <li>
+          <Video size={16} />
+        </li>
+        <li>
+          <UserRoundPen size={16} />
+        </li>
       </ul>
     </section>
   );
-}
+};
 
 export default UserInfo;

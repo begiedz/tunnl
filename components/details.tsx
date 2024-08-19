@@ -1,9 +1,5 @@
 const Details = () => {
-  return (
-    <aside className="bg-blue-500 flex-[1]">
-      Details
-    </aside>
-  );
-}
+  return <aside className="flex-[1] rounded-xl bg-blue-500">Details</aside>;
+};
 
 export default Details;
