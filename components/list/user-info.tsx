@@ -1,5 +1,5 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Ellipsis, UserRoundPen, Video } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Ellipsis, UserRoundPen, Video } from 'lucide-react'
 
 const UserInfo = () => {
   return (
@@ -24,7 +24,7 @@ const UserInfo = () => {
         </li>
       </ul>
     </section>
-  );
-};
+  )
+}
 
-export default UserInfo;
+export default UserInfo

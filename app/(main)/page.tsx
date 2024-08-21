@@ -1,8 +1,8 @@
-'use client';
+'use client'
 
-import Chat from '../../components/chat';
-import Details from '../../components/details';
-import Users from '../../components/list';
+import Chat from '../../components/chat'
+import Details from '../../components/details'
+import Users from '../../components/list'
 
 export default function Home() {
   return (
@@ -11,5 +11,5 @@ export default function Home() {
       <Chat></Chat>
       <Details></Details>
     </>
-  );
+  )
 }
