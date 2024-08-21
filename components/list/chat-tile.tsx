@@ -8,13 +8,11 @@ const ChatTile = ({ index }: { index: number }) => {
         <AvatarFallback>{index}</AvatarFallback>
       </Avatar>
       <div className="w-full">
-        <h3 className="font-bold">{`User ${index}`}</h3>
         <div className="flex flex-row justify-between">
-          <div>
-            <span className="line-clamp-1">You: Lorem, ipsum dolor.</span>
-          </div>
+          <h3 className="font-bold">{`User ${index}`}</h3>
           <div>10min</div>
         </div>
+        <span className="line-clamp-1 w-full">You: Lorem, ipsum dolor.</span>
       </div>
     </button>
   )
