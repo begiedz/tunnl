@@ -6,11 +6,11 @@ const Searchbar = ({ className }: { className?: string }) => {
     <div className="relative w-full">
       <Search
         className="absolute left-3 top-1/2 -translate-y-1/2 transform text-gray-500"
-        size={20}
+        size={16}
       />
       <Input
         type="search"
-        placeholder="Search for chats..."
+        placeholder="Search"
         className={cn('pl-10', className)}
       />
     </div>

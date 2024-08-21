@@ -4,9 +4,9 @@ import { Button } from '../ui/button'
 
 const UserInfo = () => {
   return (
-    <section className="mb-1 flex items-center justify-between border-b-2 border-slate-200 pb-4">
+    <section className="flex items-center justify-between border-b-2 border-slate-200 py-4">
       <div className="flex items-center gap-2">
-        <Avatar className="size-14">
+        <Avatar className="size-12">
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>UP</AvatarFallback>
         </Avatar>

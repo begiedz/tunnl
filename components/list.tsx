@@ -8,10 +8,10 @@ import { useState } from 'react'
 const List = () => {
   const [addMode, setAddMode] = useState(true)
   return (
-    <aside className="flex flex-[1] flex-col gap-2 rounded-xl bg-gray-50">
+    <aside className="flex flex-[1] flex-col gap-4 rounded-xl bg-background last:pb-4 [&>*]:px-4">
       <UserInfo />
       <h2 className="text-2xl font-bold">Chats</h2>
-      <div className="mb-2 flex items-center gap-2">
+      <div className="flex items-center gap-2">
         <Searchbar />
         <Button
           size="sm"
