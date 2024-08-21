@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <Users></Users>
       <Chat></Chat>
-      <Details></Details>
+      {/* <Details></Details> */}
     </>
   )
 }

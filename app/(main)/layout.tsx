@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { cn } from '@/lib/utils'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,9 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} flex h-screen w-screen items-center justify-center`}
+        className={cn([
+          inter.className,
+          'flex h-dvh w-dvw items-center justify-center bg-slate-200',
+        ])}
       >
-        <div className="flex h-[95%] w-[95%] justify-between gap-4">
+        <div className="flex h-[97%] w-[97%] justify-between gap-4 [&>*]:p-4">
           {children}
         </div>
       </body>

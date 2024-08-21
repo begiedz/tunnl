@@ -1,28 +1,29 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Ellipsis, UserRoundPen, Video } from 'lucide-react'
+import { Button } from '../ui/button'
 
 const UserInfo = () => {
   return (
-    <section className="flex items-center justify-between p-2">
+    <section className="flex items-center justify-between">
       <div className="flex items-center gap-2">
         <Avatar>
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>UP</AvatarFallback>
         </Avatar>
-        <h2 className="text-ellipsis">User Profile</h2>
+        <h2 className="text-ellipsis text-xl font-bold">User Profile</h2>
       </div>
 
-      <ul className="flex gap-1">
-        <li>
+      <div className="flex gap-1">
+        <Button variant="outline" size="sm">
           <Ellipsis size={16} />
-        </li>
-        <li>
+        </Button>
+        <Button variant="outline" size="sm">
           <Video size={16} />
-        </li>
-        <li>
+        </Button>
+        <Button variant="outline" size="sm">
           <UserRoundPen size={16} />
-        </li>
-      </ul>
+        </Button>
+      </div>
     </section>
   )
 }
