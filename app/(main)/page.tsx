@@ -7,7 +7,7 @@ import List from '../../components/list'
 export default function Home() {
   return (
     <>
-      <List></List>
+      {/* <List></List> */}
       <Chat></Chat>
       {/* <Details></Details> */}
     </>

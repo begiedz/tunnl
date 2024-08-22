@@ -10,7 +10,7 @@ const UserInfo = () => {
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>UP</AvatarFallback>
         </Avatar>
-        <h2 className="text-ellipsis text-xl font-bold">User Profile</h2>
+        <h2 className="line-clamp-1 text-xl font-bold">User Profile</h2>
       </div>
 
       <div className="flex gap-1">
