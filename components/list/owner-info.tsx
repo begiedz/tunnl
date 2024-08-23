@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Ellipsis, UserRoundPen, Video } from 'lucide-react'
 import { Button } from '../ui/button'
 
-const UserInfo = () => {
+const OwnerInfo = () => {
   return (
     <section className="flex items-center justify-between border-b-2 border-slate-200 py-4">
       <div className="flex items-center gap-2">
@@ -28,4 +28,4 @@ const UserInfo = () => {
   )
 }
 
-export default UserInfo
+export default OwnerInfo

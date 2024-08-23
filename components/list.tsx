@@ -1,6 +1,6 @@
 import { Minus, Plus } from 'lucide-react'
 import ChatList from './list/chat-list'
-import UserInfo from './list/user-info'
+import OwnerInfo from './list/owner-info'
 import { Button } from './ui/button'
 import Searchbar from './ui/searchbar'
 import { useState } from 'react'
@@ -9,7 +9,7 @@ const List = () => {
   const [addMode, setAddMode] = useState(true)
   return (
     <aside className="flex flex-[1] flex-col gap-4 rounded-xl bg-background last:pb-4 [&>*]:px-4">
-      <UserInfo />
+      <OwnerInfo />
       <h2 className="text-2xl font-bold">Chats</h2>
       <div className="flex items-center gap-2">
         <Searchbar />
