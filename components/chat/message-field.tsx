@@ -1,6 +1,13 @@
+import { useEffect, useRef } from 'react'
 import Message from './message'
 
 const MessageField = () => {
+  const endRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [])
+
   return (
     <section className="flex h-full w-full flex-col overflow-scroll">
       <Message value="elo" sentTime={2} />
@@ -33,6 +40,7 @@ const MessageField = () => {
       <Message owner value="👍" />
       <Message owner value="👍" />
       <Message owner value="👍" />
+      <div ref={endRef}></div>
     </section>
   )
 }

@@ -2,7 +2,7 @@ import { Info, Phone, Video } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { Button } from '../ui/button'
 
-const Chatbar = () => {
+const Chatbar = ({ onInfoClick }: { onInfoClick: () => void }) => {
   return (
     <section className="flex w-full flex-shrink-0 items-center justify-between border-b-2 border-slate-200 py-4">
       <div className="flex items-center gap-2">
@@ -29,6 +29,7 @@ const Chatbar = () => {
         <Button
           className="aspect-square bg-transparent p-2"
           variant="secondary"
+          onClick={onInfoClick}
         >
           <Info size={20} />
         </Button>
