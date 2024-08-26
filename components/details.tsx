@@ -1,3 +1,4 @@
+'use client'
 import ChatSettings from './details/chat-settings'
 import PrivacyHelp from './details/privacy-help'
 import SharedFiles from './details/shared-files'

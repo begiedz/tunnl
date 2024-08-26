@@ -1,3 +1,4 @@
+'use client'
 import { Minus, Plus } from 'lucide-react'
 import ChatList from './list/chat-list'
 import OwnerInfo from './list/owner-info'

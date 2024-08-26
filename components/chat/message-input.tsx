@@ -1,3 +1,4 @@
+'use client'
 import { Image, Camera, Mic, Send, Smile } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Textarea } from '../ui/textarea'
