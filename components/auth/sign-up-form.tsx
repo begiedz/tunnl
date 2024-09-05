@@ -16,6 +16,8 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { useState } from 'react'
 import Link from 'next/link'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '@/lib/firebase'
 
 const SignInForm = () => {
   const formSchema = z.object({
@@ -37,8 +39,20 @@ const SignInForm = () => {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
+
+    console.log(values.username)
+
+    try {
+      const res = await createUserWithEmailAndPassword(
+        auth,
+        values.email,
+        values.password
+      )
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   interface Avatar {
