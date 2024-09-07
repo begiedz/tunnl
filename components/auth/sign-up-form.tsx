@@ -22,6 +22,7 @@ import { useRouter } from 'next/navigation'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth, db } from '@/lib/firebase'
 import { doc, setDoc } from 'firebase/firestore'
+import upload from '@/lib/upload'
 
 const SignInForm = () => {
   const formSchema = z.object({
@@ -45,9 +46,22 @@ const SignInForm = () => {
 
   const router = useRouter()
   const { toast } = useToast()
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
 
+  interface Avatar {
+    file: File | null
+    url: string
+  }
+
+  const [avatar, setAvatar] = useState<Avatar>({
+    file: null,
+    url: '',
+  })
+
+  const [isLoading, setIsLoading] = useState(false)
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true)
+    console.log(values)
     console.log(values.username)
 
     try {
@@ -57,7 +71,10 @@ const SignInForm = () => {
         values.password
       )
 
+      const imgUrl = await upload(avatar.file)
+
       await setDoc(doc(db, 'users', res.user.uid), {
+        avatar: imgUrl,
         username: values.username,
         email: values.email,
         id: res.user.uid,
@@ -67,27 +84,22 @@ const SignInForm = () => {
       await setDoc(doc(db, 'userchats', res.user.uid), {
         chats: [],
       })
+
       toast({
         title: 'Success!',
         description: 'Now you can log in to your account!',
       })
+
       router.push('/sign-in')
     } catch (error) {
       toast({
         title: 'Oops..',
         description: 'There was an problem creating your account.',
       })
+    } finally {
+      setIsLoading(true)
     }
   }
-
-  interface Avatar {
-    file: File | null
-    url: string
-  }
-  const [avatar, setAvatar] = useState<Avatar>({
-    file: null,
-    url: '',
-  })
 
   const handleAvatar = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -167,8 +179,8 @@ const SignInForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">
-          Sign Up
+        <Button disabled={isLoading} type="submit" className="w-full">
+          {isLoading ? 'Loading...' : 'Sign Up'}
         </Button>
         <div>
           <Link
