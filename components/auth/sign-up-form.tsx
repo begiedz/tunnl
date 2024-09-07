@@ -11,13 +11,17 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { useToast } from '@/hooks/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '@/lib/firebase'
+import { auth, db } from '@/lib/firebase'
+import { doc, setDoc } from 'firebase/firestore'
 
 const SignInForm = () => {
   const formSchema = z.object({
@@ -39,6 +43,8 @@ const SignInForm = () => {
     },
   })
 
+  const router = useRouter()
+  const { toast } = useToast()
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
 
@@ -50,8 +56,27 @@ const SignInForm = () => {
         values.email,
         values.password
       )
+
+      await setDoc(doc(db, 'users', res.user.uid), {
+        username: values.username,
+        email: values.email,
+        id: res.user.uid,
+        blocked: [],
+      })
+
+      await setDoc(doc(db, 'userchats', res.user.uid), {
+        chats: [],
+      })
+      toast({
+        title: 'Success!',
+        description: 'Now you can log in to your account!',
+      })
+      router.push('/sign-in')
     } catch (error) {
-      console.log(error)
+      toast({
+        title: 'Oops..',
+        description: 'There was an problem creating your account.',
+      })
     }
   }
 
