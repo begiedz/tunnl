@@ -3,7 +3,6 @@
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -15,27 +14,45 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import Link from 'next/link'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { toast } from '@/hooks/use-toast'
+import { useState } from 'react'
+import { auth } from '@/lib/firebase'
 
 const SignInForm = () => {
   const formSchema = z.object({
-    username: z.string().min(2, {
-      message: 'Username must be at least 2 characters.',
-    }),
     email: z.string().email().toLowerCase(),
-    password: z.string().min(8, {}),
+    password: z.string(),
   })
 
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: '',
       email: '',
       password: '',
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+  const [isLoading, setIsLoading] = useState(false)
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true)
+
+    try {
+      console.log('Attempting to sign in...')
+      await signInWithEmailAndPassword(auth, values.email, values.password)
+      console.log('Sign in successful!')
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(error)
+        toast({
+          title: 'Oops..',
+          description: error.message,
+        })
+      }
+    } finally {
+      setIsLoading(false)
+    }
   }
   return (
     <Form {...form}>
@@ -70,8 +87,8 @@ const SignInForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">
-          Sign In
+        <Button disabled={isLoading} type="submit" className="w-full">
+          {isLoading ? 'Signing in...' : 'Sign In'}
         </Button>
         <div className="text-sm">
           Need an account?{' '}

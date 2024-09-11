@@ -61,9 +61,6 @@ const SignInForm = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true)
-    console.log(values)
-    console.log(values.username)
-
     try {
       const res = await createUserWithEmailAndPassword(
         auth,
@@ -92,12 +89,15 @@ const SignInForm = () => {
 
       router.push('/sign-in')
     } catch (error) {
-      toast({
-        title: 'Oops..',
-        description: 'There was an problem creating your account.',
-      })
+      if (error instanceof Error) {
+        console.error(error)
+        toast({
+          title: 'Oops..',
+          description: error.message,
+        })
+      }
     } finally {
-      setIsLoading(true)
+      setIsLoading(false)
     }
   }
 
@@ -180,7 +180,7 @@ const SignInForm = () => {
           )}
         />
         <Button disabled={isLoading} type="submit" className="w-full">
-          {isLoading ? 'Loading...' : 'Sign Up'}
+          {isLoading ? 'Signing up...' : 'Sign Up'}
         </Button>
         <div>
           <Link
