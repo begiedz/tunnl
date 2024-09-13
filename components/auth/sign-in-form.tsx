@@ -18,6 +18,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import { toast } from '@/hooks/use-toast'
 import { useState } from 'react'
 import { auth } from '@/lib/firebase'
+import { useRouter } from 'next/navigation'
 
 const SignInForm = () => {
   const formSchema = z.object({
@@ -33,6 +34,8 @@ const SignInForm = () => {
     },
   })
 
+  const router = useRouter()
+
   const [isLoading, setIsLoading] = useState(false)
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -42,6 +45,7 @@ const SignInForm = () => {
       console.log('Attempting to sign in...')
       await signInWithEmailAndPassword(auth, values.email, values.password)
       console.log('Sign in successful!')
+      router.push('/')
     } catch (error) {
       if (error instanceof Error) {
         console.error(error)

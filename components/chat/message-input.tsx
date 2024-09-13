@@ -2,17 +2,14 @@
 import { Image, Camera, Mic, Send, Smile } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Textarea } from '../ui/textarea'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import EmojiPicker, { EmojiClickData } from 'emoji-picker-react'
 import { MouseDownEvent } from 'emoji-picker-react/dist/config/config'
 
 const MessageInput = () => {
   const [isFocused, setIsFocused] = useState(false)
-
   const [openEmoji, setOpenEmoji] = useState(false)
-
   const [text, setText] = useState('')
-
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   const handleEmoji = (emojiData: EmojiClickData, e: MouseEvent) => {
@@ -28,7 +25,6 @@ const MessageInput = () => {
     }
   }
 
-  console.log(text)
   return (
     <section className="relative flex w-full items-center gap-2">
       {!isFocused && (
