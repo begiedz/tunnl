@@ -2,12 +2,14 @@
 
 import { db } from '@/lib/firebase'
 import { doc, getDoc } from '@firebase/firestore'
+import { User } from 'firebase/auth'
 import { createContext, ReactNode, useContext, useState } from 'react'
 
 interface UserContextProps {
   currentUser: any | null
   isLoading: boolean
   fetchUserInfo: (uid: string | null) => void
+  setCurrentUser: (user: User | null) => void
 }
 
 const UserContext = createContext<UserContextProps | undefined>(undefined)
@@ -40,7 +42,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   }
 
   return (
-    <UserContext.Provider value={{ currentUser, isLoading, fetchUserInfo }}>
+    <UserContext.Provider
+      value={{ currentUser, setCurrentUser, isLoading, fetchUserInfo }}
+    >
       {children}
     </UserContext.Provider>
   )

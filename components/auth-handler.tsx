@@ -5,10 +5,6 @@ import { onAuthStateChanged, User } from 'firebase/auth'
 import { auth } from '@/lib/firebase'
 import { useUser } from '@/context/UserContext'
 
-interface AuthHandlerProps {
-  fetchUserInfo: (uid: string) => void
-}
-
 const AuthHandler = () => {
   const { fetchUserInfo } = useUser()
 

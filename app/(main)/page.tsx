@@ -2,7 +2,7 @@
 import Chat from '../../components/chat'
 import { useUser } from '@/context/UserContext'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
   const { isLoading, currentUser } = useUser()
@@ -10,11 +10,15 @@ export default function Home() {
 
   useEffect(() => {
     if (!currentUser) {
-      console.log(currentUser)
       router.push('/sign-in')
     }
-  }, [currentUser])
+  }, [currentUser, router])
 
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading)
+    return (
+      <div className="flex h-dvh w-dvw items-center justify-center">
+        Loading...
+      </div>
+    )
   return <Chat />
 }
