@@ -11,17 +11,14 @@ interface ChatItem {
 }
 
 const ChatList = () => {
-  // const chatList = []
-
-  // for (let i = 1; i <= 21; i++) {
-  //   chatList.push(<ChatTile key={i} />)
-  // }
-
   const { currentUser } = useUser()
 
   const [chats, setChats] = useState<DocumentData | undefined>([])
 
   useEffect(() => {
+    if (!currentUser || !currentUser.id) {
+      return
+    }
     const unSub = onSnapshot(
       doc(db, 'userchats', currentUser.id),
       async (res) => {
@@ -43,8 +40,7 @@ const ChatList = () => {
     return () => {
       unSub()
     }
-  }, [currentUser.id])
-
+  }, [currentUser])
   return (
     <section className="flex w-full flex-col gap-2 overflow-scroll">
       {chats?.map((chat: DocumentData | undefined) => {

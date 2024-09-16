@@ -1,8 +1,8 @@
 'use client'
-import Chat from '../../components/chat'
+import Chat from '../components/chat'
 import { useUser } from '@/context/UserContext'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 export default function Home() {
   const { isLoading, currentUser } = useUser()
