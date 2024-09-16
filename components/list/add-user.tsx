@@ -27,7 +27,11 @@ const AddUser = () => {
         </DialogHeader>
         <div>
           <form className="mb-4 flex gap-4">
-            <Input type="text" placeholder="Username" name="username" />
+            <Input
+              type="text"
+              placeholder="Search by username"
+              name="username"
+            />
             <Button>Search</Button>
           </form>
           <section className="flex w-full space-x-2 rounded-md p-2 text-left transition-colors hover:bg-slate-200">
